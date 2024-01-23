@@ -17,7 +17,7 @@ public class Comment {
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "petiion_id")
-    private Petition petition
+    private Petition petition;
 
     private String content;
 
