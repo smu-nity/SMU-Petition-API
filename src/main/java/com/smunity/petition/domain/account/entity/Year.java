@@ -1,4 +1,4 @@
-package com.smunity.petition.account.entity;
+package com.smunity.petition.domain.account.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
