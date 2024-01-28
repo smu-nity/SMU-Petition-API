@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+
 @Entity
 @Getter
 @Builder
@@ -29,9 +31,13 @@ public class Answer {
     @JoinColumn(name = "question_id")
     private Question question;
 
+    @Column(nullable = false)
+    private Timestamp create_date;
 
+    @Column(nullable = false)
+    private Timestamp modify_date;
 
     public void setContent(String content) {
-        content=content;
+        content = content;
     }
 }

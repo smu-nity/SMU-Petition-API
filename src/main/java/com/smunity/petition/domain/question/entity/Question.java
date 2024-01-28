@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+
 @Entity
 @Getter
 @Builder
@@ -18,37 +20,36 @@ public class Question {
     private Long id;
 
     @Column(nullable = false)
-    private String title;
+    private String subject;
 
     @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
-    private Boolean anonymous;
+    private boolean anonymous;
 
     //@ManyToOne(fetch = FetchType.LAZY)
     //@JoinColumn(name = "author_id")
     //private User user;
 
+    @Column(nullable = false)
+    private Timestamp create_date;
+
+    @Column(nullable = false)
+    private Timestamp modify_date;
+
     @OneToOne(mappedBy = "question", fetch = FetchType.LAZY)
     private Answer answer;
 
-    public boolean isAnonymous() {
-        return this.anonymous;
+    public void setSubject(String subject) {
+        subject = subject;
     }
 
-    public void setTitle(String title){
-        title=title;
+    public void setContent(String content) {
+        content = content;
     }
 
-    public void setContent(String content){
-        content=content;
+    public void setAnonymous(boolean anonymous) {
+        anonymous = anonymous;
     }
-
-    public void setAnonymous(Boolean anonymous)
-    {
-        anonymous=anonymous;
-    }
-
 }
-
