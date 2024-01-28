@@ -1,9 +1,15 @@
 package com.smunity.petition.domain.account.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
-
 import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.Getter;
 
 @Getter
 @Table(name = "accounts_year")
@@ -16,19 +22,19 @@ public class Year {
     @Column(name = "year", nullable = false)
     private String year;
 
-    @Column(name = "major_i", nullable = false)
+    @Column(name = "major_i")
     private int majorI;
 
-    @Column(name = "major_s", nullable = false)
+    @Column(name = "major_s")
     private int majorS;
 
-    @Column(name = "culture", nullable = false)
+    @Column(name = "culture")
     private int culture;
 
-    @Column(name = "culture_cnt", nullable = false)
+    @Column(name = "culture_cnt")
     private int cultureCnt;
 
-    @Column(name = "all", nullable = false)
+    @Column(name = "all_score")
     private int all;
 
     @OneToMany(mappedBy = "year")

@@ -1,9 +1,14 @@
 package com.smunity.petition.domain.account.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
 
-import java.util.List;
-
+@Getter
 @Table(name = "accounts_department")
 @Entity
 public class Department {
@@ -23,9 +28,7 @@ public class Department {
     @Column(name = "url")
     private String url;
 
-
     @OneToMany(mappedBy = "department")
     private List<Profile> profiles;
 
 }
-
