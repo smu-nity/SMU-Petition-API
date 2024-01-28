@@ -1,23 +1,28 @@
-package com.smunity.petition.domain;
+package com.smunity.petition.domain.petition.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "petition")
+@Getter
+@Table(name = "petitions_petition")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Petition {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Id @GeneratedValue
-    @Column(name = "petition_id")
-    private Long petitionId;
+    @Column
+    private Long author_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id")
-    private User user;
+    //TODO User 테이블 생성 후 연결
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "author_id")
+//    private User user;
 
     @Column(length = 200)
     private String subject;
@@ -30,12 +35,11 @@ public class Petition {
     @Column(name = "create_date")
     private LocalDateTime createdDate;
 
-    @Column(name = "modified_date")
+    @Column(name = "modify_date")
     private LocalDateTime modifiedDate;
 
     @Column(name = "end_date")
     private LocalDateTime endDate;
 
     private int status;
-
 }
