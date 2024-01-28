@@ -34,8 +34,7 @@ public class Year {
     @Column(name = "culture_cnt")
     private int cultureCnt;
 
-    // TODO MySQL의 keyword와 충돌. 컬럼명 수정 필요
-    @Column(name = "allScore")
+    @Column(name = "all_score")
     private int all;
 
     @OneToMany(mappedBy = "year")

@@ -27,4 +27,8 @@ public class Department {
 
     @Column(name = "url")
     private String url;
+
+    @OneToMany(mappedBy = "department")
+    private List<Profile> profiles;
+
 }
