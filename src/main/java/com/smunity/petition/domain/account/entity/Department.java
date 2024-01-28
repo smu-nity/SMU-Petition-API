@@ -1,12 +1,9 @@
 package com.smunity.petition.domain.account.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
+
+import java.util.List;
 
 @Getter
 @Table(name = "accounts_department")
@@ -30,5 +27,4 @@ public class Department {
 
     @OneToMany(mappedBy = "department")
     private List<Profile> profiles;
-
 }
