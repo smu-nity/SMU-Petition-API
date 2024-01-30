@@ -1,5 +1,6 @@
 package com.smunity.petition.domain.petition.entity;
 
+import com.smunity.petition.domain.account.entity.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -17,10 +18,9 @@ public class Agreement {
     @Column
     private Long user_id;
 
-    //TODO User 테이블 생성 후 연결
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "author_id")
-//    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "petition_id")
