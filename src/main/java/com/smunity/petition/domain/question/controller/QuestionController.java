@@ -15,14 +15,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/questions")
 public class QuestionController {
-    private QuestionService questionService;
+    private final QuestionService questionService;
 
     @GetMapping
     public List<QuestionListDto> list() {
-        return questionService.findList();
+        return questionService.getQuestion();
     }
     @GetMapping("/{id}")
     public QuestionDto read(@PathVariable Long id) {
-        return questionService.findById(id);
+        return questionService.getQuestionById(id);
     }
 }

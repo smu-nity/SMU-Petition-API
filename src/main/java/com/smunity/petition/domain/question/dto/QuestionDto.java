@@ -1,13 +1,12 @@
 package com.smunity.petition.domain.question.dto;
 
 import com.smunity.petition.domain.question.entity.Question;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class QuestionDto {
 
     private Long id;
@@ -15,27 +14,12 @@ public class QuestionDto {
     private String content;
     private boolean anonymous;
 
-    public void setId(Long id) {
-        id = id;
-    }
-
-    public void setSubject(String subject) {
-        subject = subject;
-    }
-
-    public void setContent(String content) {
-        content = content;
-    }
-
-    public void setAnonymous(boolean anonymous) {
-        anonymous = anonymous;
-    }
-    public static QuestionDto toQuestionDto(Question question) {
-        QuestionDto questionsResponseDto = new QuestionDto();
-        questionsResponseDto.setId(question.getId());
-        questionsResponseDto.setSubject(question.getSubject());
-        questionsResponseDto.setContent(question.getContent());
-        questionsResponseDto.setAnonymous(question.isAnonymous());
-        return questionsResponseDto;
+    public static QuestionDto from(Question question) {
+        return QuestionDto.builder()
+                .id(question.getId())
+                .subject(question.getSubject())
+                .content(question.getContent())
+                .anonymous(question.isAnonymous())
+                .build();
     }
 }
