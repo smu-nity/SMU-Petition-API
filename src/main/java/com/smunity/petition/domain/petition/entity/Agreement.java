@@ -3,13 +3,15 @@ package com.smunity.petition.domain.petition.entity;
 import com.smunity.petition.domain.account.entity.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Table(name = "petitions_petition_voter")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Table(name = "petitions_petition_voter")
 public class Agreement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
