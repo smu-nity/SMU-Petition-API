@@ -21,6 +21,9 @@ public enum ErrorCode implements BaseErrorCode {
 
     //question 관련 에러
     QUESTION_NOT_FOUND(HttpStatus.NOT_FOUND,"QUESTION404", "해당 QUESTION이 존재하지 않습니다.");
+  
+    // petition 관련 에러
+    PETITION_NOT_FOUND(HttpStatus.NOT_FOUND, "PETITION404", "해당 청원이 존재하지 않습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
