@@ -1,6 +1,7 @@
 package com.smunity.petition.domain.petition.entity;
 
 import com.smunity.petition.domain.account.entity.User;
+import com.smunity.petition.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(name = "petitions_petition")
-public class Petition {
+public class Petition extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,11 +33,6 @@ public class Petition {
     private int category;
 
     private boolean anonymous;
-    @Column(name = "create_date")
-    private LocalDateTime createdDate;
-
-    @Column(name = "modify_date")
-    private LocalDateTime modifiedDate;
 
     @Column(name = "end_date")
     private LocalDateTime endDate;

@@ -3,7 +3,6 @@ package com.smunity.petition.global.config;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
-import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,16 +10,12 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
     @Bean
     public OpenAPI getOpenApi() {
-        Server server = new Server().url("/");
-
-        return new OpenAPI()
-                .info(getSwaggerInfo())
-                .addServersItem(server);
+        return new OpenAPI().info(getSwaggerInfo());
     }
 
     private Info getSwaggerInfo() {
         License license = new License();
-        license.setName("{Application}");
+        license.setName("Copyright (c) 2024 Smunity");
 
         return new Info()
                 .title("Smunity API Document")
