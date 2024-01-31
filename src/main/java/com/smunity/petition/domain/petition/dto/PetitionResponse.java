@@ -39,8 +39,8 @@ public class PetitionResponse {
                     .comments(CommentResponse.commentDTO.from(petition.getComments()))
                     .agreementCount(petition.getAgreements().size())
                     .respond(petition.getRespond() != null ? RespondResponse.respondDTO.from(petition.getRespond()) : null)
-                    .createdDate(petition.getCreatedDate())
-                    .modifiedDate(petition.getModifiedDate())
+                    .createdDate(petition.getCreateDate())
+                    .modifiedDate(petition.getModifyDate())
                     .endDate(petition.getEndDate())
                     .build();
         }
