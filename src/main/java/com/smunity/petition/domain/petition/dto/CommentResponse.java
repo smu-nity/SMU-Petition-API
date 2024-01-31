@@ -1,27 +1,34 @@
 package com.smunity.petition.domain.petition.dto;
 
-import com.smunity.petition.domain.account.entity.User;
 import com.smunity.petition.domain.petition.entity.Comment;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CommentResponse {
-
-    public static class commentDTO{
-
+    @Getter
+    @Builder
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class commentDTO {
         private String content;
-
         private Long userId;
-
         private LocalDateTime createdDate;
-
         private LocalDateTime modifiedDate;
 
-        public commentDTO(Comment comment, User user){
-            this.content = comment.getContent();
-            this.userId = user.getId();
-            this.createdDate = comment.getCreatedDate();
-            this.modifiedDate = comment.getModifiedDate();
+        public static commentDTO from(Comment comment) {
+            return commentDTO.builder()
+                    .content(comment.getContent())
+                    .userId(comment.getUser().getId())
+                    .createdDate(comment.getCreatedDate())
+                    .modifiedDate(comment.getModifiedDate())
+                    .build();
+        }
+
+        public static List<commentDTO> from(List<Comment> comments) {
+            return comments.stream().map(commentDTO::from).collect(Collectors.toList());
         }
     }
 }
