@@ -20,8 +20,8 @@ public class RespondResponse {
             return respondDTO.builder()
                     .content(respond.getContent())
                     .userId(respond.getUser().getId())
-                    .createdDate(respond.getCreatedDate())
-                    .modifiedDate(respond.getModifiedDate())
+                    .createdDate(respond.getCreateDate())
+                    .modifiedDate(respond.getModifyDate())
                     .build();
         }
     }
