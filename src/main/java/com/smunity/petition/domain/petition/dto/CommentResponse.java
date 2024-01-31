@@ -22,8 +22,8 @@ public class CommentResponse {
             return commentDTO.builder()
                     .content(comment.getContent())
                     .userId(comment.getUser().getId())
-                    .createdDate(comment.getCreatedDate())
-                    .modifiedDate(comment.getModifiedDate())
+                    .createdDate(comment.getCreateDate())
+                    .modifiedDate(comment.getModifyDate())
                     .build();
         }
 
