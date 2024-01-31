@@ -28,6 +28,8 @@ public class Comment {
     @JoinColumn(name = "petition_id")
     private Petition petition;
 
+    private String content;
+
     @Column(name = "create_date")
     private LocalDateTime createdDate;
 
