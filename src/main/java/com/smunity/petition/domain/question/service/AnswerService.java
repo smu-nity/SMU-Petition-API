@@ -23,9 +23,9 @@ public class AnswerService {
     // private final QuestionRepository questionRepository;
     // private final UserRepository userRepository;
 
-    public AnswerResponseDto getAnswerById(Long id) {
-        Answer AnswerEntity = answerRepository.findById(id).orElseThrow(
-                () -> new GeneralException(ErrorCode.ANSWER_NOT_FOUND));
+    public AnswerResponseDto getAnswer(Long questionId) {
+        Answer AnswerEntity = answerRepository.findByQuestionId(questionId).orElseThrow(
+                () -> new GeneralException(ErrorCode.QUESTION_NOT_FOUND));
         return AnswerResponseDto.from(AnswerEntity);
     }
 
