@@ -1,6 +1,5 @@
 package com.smunity.petition.domain.question.entity;
 
-
 import com.smunity.petition.domain.account.entity.User;
 import com.smunity.petition.global.common.BaseEntity;
 import jakarta.persistence.*;
@@ -32,6 +31,11 @@ public class Answer extends BaseEntity {
     private Question question;
 
     public void setContent(String content) {
+        content = content;
+    }
+
+    public void update(Long id, String content) {
+        id = id;
         content = content;
     }
 }
