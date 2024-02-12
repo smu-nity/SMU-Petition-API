@@ -3,6 +3,7 @@ package com.smunity.petition.domain.account.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.smunity.petition.domain.question.entity.Answer;
 import com.smunity.petition.domain.question.entity.Question;
+import com.smunity.petition.domain.petition.entity.Petition;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -65,8 +66,10 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Answer> answers;
+  
+    private List<Petition> petitions;
 
     public void setProfile(Profile profile) {
-        profile = profile;
+        this.profile = profile;
     }
 }
