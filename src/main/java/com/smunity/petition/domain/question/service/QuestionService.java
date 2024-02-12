@@ -24,7 +24,9 @@ public class QuestionService {
         return QuestionListDto.from(questions);
     }
 
+    @Transactional
     public Question save(QuestionRequestDto question) {
+        //TODO 로그인한 사용자 FK 연결
         return questionRepository.save(question.toEntity());
     }
 
@@ -34,6 +36,7 @@ public class QuestionService {
         return QuestionDto.from(QuestionEntity);
     }
 
+    @Transactional
     public QuestionRequestDto update(Long question_id, QuestionRequestDto question) {
         Question questionEntity = questionRepository.findById(question_id).orElseThrow(()
                 -> new GeneralException(ErrorCode.QUESTION_NOT_FOUND));
@@ -41,7 +44,9 @@ public class QuestionService {
         return question;
     }
 
-    public QuestionDto delete(Long questionId) {
-        return QuestionDto.from(questionRepository.delete(questionRepository.findById(questionId)));
+    @Transactional
+    public void delete(Long questionId) {
+        Question question = questionRepository.findById(questionId).orElseThrow(() -> new GeneralException(ErrorCode.QUESTION_NOT_FOUND));
+        questionRepository.delete(question);
     }
 }

@@ -3,6 +3,7 @@ package com.smunity.petition.domain.question.controller;
 import com.smunity.petition.domain.question.dto.AnswerDto;
 import com.smunity.petition.domain.question.dto.AnswerRequestDto;
 import com.smunity.petition.domain.question.service.AnswerService;
+import com.smunity.petition.global.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,17 +20,18 @@ public class AnswerController {
 
     @PostMapping("/{question_id}")
     public AnswerDto create(@RequestBody AnswerRequestDto answer,
-                         @PathVariable Long question_id) {
+                            @PathVariable Long question_id) {
         return answerService.save(answer, answer.getQuestion_id());
     }
 
     @PatchMapping("/{answer_id}")
     public AnswerRequestDto update(@RequestBody AnswerRequestDto answer,
-                         @PathVariable Long answer_id){
+                                   @PathVariable Long answer_id) {
         return answerService.update(answer_id, answer);
     }
+
     @DeleteMapping("/{answer_id}")
-    public AnswerDto delete(@PathVariable Long answer_id) {
-        return answerService.delete(answer_id);
+    public ApiResponse<Void> delete(@PathVariable Long answer_id) {
+        return ApiResponse.noContent();
     }
 }

@@ -20,23 +20,24 @@ public class AnswerService {
     private final AnswerRepository answerRepository;
 
     public AnswerDto getAnswerByQuestionId(Long question_id) {
-        Answer AnswerEntity = questionRepository.findById(question_id)
-                .orElseThrow(() -> new GeneralException(ErrorCode.QUESTION_NOT_FOUND))
-                .getAnswer();
-//                .orElseThrow(() -> new GeneralException(ErrorCode.ANSWER_NOT_FOUND));
-        return AnswerDto.from(AnswerEntity);
+        Answer answer = answerRepository.findByQuestionId(question_id).orElseThrow(() -> new GeneralException(ErrorCode.ANSWER_NOT_FOUND));
+        return AnswerDto.from(answer);
     }
 
+    @Transactional
     public AnswerDto save(AnswerRequestDto answer, Long question_id) {
         Question questionEntity = questionRepository.findById(question_id)
                 .orElseThrow(() -> new GeneralException(ErrorCode.QUESTION_NOT_FOUND));
         return AnswerDto.from(answerRepository.save(answer.toEntity(questionEntity)));
     }
 
-    public AnswerDto delete(Long answerId) {
-        return AnswerDto.from(answerRepository.delete(answerRepository.findById(answerId)));
+    @Transactional
+    public void delete(Long answerId) {
+        Answer answer = answerRepository.findById(answerId).orElseThrow(() -> new GeneralException(ErrorCode.ANSWER_NOT_FOUND));
+        answerRepository.delete(answer);
     }
 
+    @Transactional
     public AnswerRequestDto update(Long answer_id, AnswerRequestDto answer) {
         Answer answerEntity = answerRepository.findById(answer_id).orElseThrow(()
                 -> new GeneralException(ErrorCode.ANSWER_NOT_FOUND));
