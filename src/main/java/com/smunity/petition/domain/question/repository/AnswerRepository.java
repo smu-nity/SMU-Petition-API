@@ -7,6 +7,4 @@ import java.util.Optional;
 
 public interface AnswerRepository extends JpaRepository<Answer, Long> {
     Answer delete(Optional<Answer> byId);
-
-    void update(Answer answer);
 }
