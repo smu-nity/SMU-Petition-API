@@ -1,6 +1,7 @@
 package com.smunity.petition.domain.petition.entity;
 
 import com.smunity.petition.domain.account.entity.User;
+import com.smunity.petition.domain.petition.dto.PetitionRequest;
 import com.smunity.petition.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -16,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(name = "petitions_petition")
+
 public class Petition extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,4 +49,11 @@ public class Petition extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "petition")
     private Respond respond;
+
+    public Petition(PetitionRequest request) {
+        this.subject = request.getSubject();
+        this.content = request.getContent();
+        this.category = request.getCategory();
+        this.anonymous = request.isAnonymous();
+    }
 }

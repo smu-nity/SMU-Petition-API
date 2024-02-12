@@ -1,5 +1,6 @@
 package com.smunity.petition.domain.petition.service;
 
+import com.smunity.petition.domain.petition.dto.PetitionRequest;
 import com.smunity.petition.domain.petition.dto.PetitionResponse;
 import com.smunity.petition.domain.petition.entity.Petition;
 import com.smunity.petition.domain.petition.repository.PetitionRepository;
@@ -26,4 +27,13 @@ public class PetitionService {
         List<Petition> petitions = petitionRepository.findAll();
         return PetitionResponse.petitionList.from(petitions);
     }
+
+    @Transactional
+    public PetitionResponse.petitionDetail update(PetitionRequest request) {
+        Petition petition = new Petition(request);
+        petitionRepository.save(petition);
+        return PetitionResponse.petitionDetail.from(petition);
+    }
+
+
 }
