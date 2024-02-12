@@ -46,4 +46,11 @@ public class Question extends BaseEntity {
     public void setAnonymous(boolean anonymous) {
         anonymous = anonymous;
     }
+
+    public void update(Long id, String subject, String content, boolean anonymous) {
+        id = id;
+        subject = subject;
+        content = content;
+        anonymous = anonymous;
+    }
 }

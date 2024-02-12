@@ -11,4 +11,6 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     List<Question> findAll();
 
     Optional<Question> findById(Long id);
+
+    Question delete(Optional<Question> byId);
 }
