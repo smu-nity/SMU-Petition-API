@@ -26,8 +26,9 @@ public class PetitionController {
         PetitionResponse.petitionDetail petitionDetail = petitionService.getPetitionById(id);
         return ApiResponse.onSuccess(petitionDetail);
     }
+
     @PostMapping
     public PetitionResponse.petitionDetail createPetition(@RequestBody PetitionRequest request) {
-        return petitionService.update(request);
+        return petitionService.createPetition(request);
     }
 }
