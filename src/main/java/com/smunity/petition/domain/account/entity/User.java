@@ -1,6 +1,7 @@
 package com.smunity.petition.domain.account.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.smunity.petition.domain.petition.entity.Petition;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -10,6 +11,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Builder
@@ -56,6 +58,9 @@ public class User {
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private Profile profile;
+
+    @OneToMany(mappedBy = "user")
+    private List<Petition> petitions;
 
     public void setProfile(Profile profile) {
         profile = profile;
