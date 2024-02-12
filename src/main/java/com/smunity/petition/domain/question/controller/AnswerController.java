@@ -13,31 +13,30 @@ import org.springframework.web.bind.annotation.*;
 public class AnswerController {
     private final AnswerService answerService;
 
-    // @PostMapping("/{question_id}")
-    // public ApiResponse<AnswerResponseDto> createAnswer(
-    //        @PathVariable Long questionId,
-    //        @RequestBody AnswerRequestDto answerRequestDto) {
-    //    return ApiResponse.onSuccess(answerService.createAnswer);
-    //}
+    @PostMapping("/{questionId}")
+    public ApiResponse<AnswerResponseDto> createAnswer(
+            @PathVariable Long questionId,
+            @RequestBody AnswerRequestDto answerRequestDto) {
+        return ApiResponse.onSuccess(answerService.createAnswer(questionId, answerRequestDto));
+    }
 
-    @GetMapping("/{questionId}")
-    public ApiResponse<AnswerResponseDto> getAnswer(@PathVariable Long questionId){
-        AnswerResponseDto answer = answerService.getAnswer(questionId);
+    @GetMapping("/{answerId}")
+    public ApiResponse<AnswerResponseDto> getAnswer(@PathVariable Long answerId) {
+        AnswerResponseDto answer = answerService.getAnswer(answerId);
         return ApiResponse.onSuccess(answer);
     }
 
-    @PutMapping("/{answerId}")
+    @PatchMapping("/{answerId}")
     public ApiResponse<AnswerResponseDto> updateAnswer(
             @PathVariable Long answerId,
-            @RequestBody AnswerRequestDto answerRequestDto){
+            @RequestBody AnswerRequestDto answerRequestDto) {
         return ApiResponse.onSuccess(answerService.updateAnswer(answerId, answerRequestDto));
     }
 
     @DeleteMapping("/{answerId}")
     public ApiResponse<Void> deleteAnswer(
-            @PathVariable Long answerId){
+            @PathVariable Long answerId) {
         answerService.deleteAnswer(answerId);
         return ApiResponse.noContent();
     }
-
 }

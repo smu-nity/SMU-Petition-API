@@ -32,7 +32,7 @@ public class QuestionController {
         return ApiResponse.onSuccess(questionService.createQuestion(requestDto));
     }
 
-    @PutMapping("/{questionId}")
+    @PatchMapping("/{questionId}")
     public ApiResponse<QuestionResponseDto> updateQuestion(
             @PathVariable Long questionId,
             @RequestBody QuestionRequestDto requestDto) {
