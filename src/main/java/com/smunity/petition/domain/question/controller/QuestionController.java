@@ -15,19 +15,22 @@ import java.util.List;
 @RequestMapping("/api/v1/questions")
 public class QuestionController {
     private final QuestionService questionService;
+
     @GetMapping
-    public List<QuestionListDto> list() {
-        return questionService.getQuestion();
-    }
-    @GetMapping("/{id}")
-    public QuestionResponseDto read(@PathVariable Long id) {
-        return questionService.getQuestionById(id);
+    public ApiResponse<List<QuestionListDto>> list() {
+        return ApiResponse.onSuccess(questionService.getQuestion());
     }
 
-    // @PostMapping("/")
-    // public ApiResponse<QuestionResponseDto> createQuestion(
-    //        @RequestBody QuestionRequestDto requestDto) {
-    //    return ApiResponse.onSuccess(questionService.createQuestion(requestDto));
+    @GetMapping("/{id}")
+    public ApiResponse<QuestionResponseDto> read(@PathVariable Long id) {
+        return ApiResponse.onSuccess(questionService.getQuestionById(id));
+    }
+
+    @PostMapping
+    public ApiResponse<QuestionResponseDto> createQuestion(
+            @RequestBody QuestionRequestDto requestDto) {
+        return ApiResponse.onSuccess(questionService.createQuestion(requestDto));
+    }
 
     @PutMapping("/{questionId}")
     public ApiResponse<QuestionResponseDto> updateQuestion(

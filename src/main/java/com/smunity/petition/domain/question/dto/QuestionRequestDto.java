@@ -1,6 +1,5 @@
 package com.smunity.petition.domain.question.dto;
 
-import com.smunity.petition.domain.account.entity.User;
 import com.smunity.petition.domain.question.entity.Question;
 import jakarta.validation.constraints.NotBlank;
 
@@ -11,12 +10,11 @@ public record QuestionRequestDto(
         String content,
         boolean anonymous
 ) {
-    public Question toEntity(User user) {
+    public Question toEntity() {
         return Question.builder()
                 .subject(subject)
                 .content(content)
                 .anonymous(anonymous)
-                .user(user)
                 .build();
     }
 }

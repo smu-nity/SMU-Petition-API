@@ -9,13 +9,11 @@ import com.smunity.petition.domain.question.entity.Question;
 import com.smunity.petition.domain.question.repository.QuestionRepository;
 import com.smunity.petition.global.common.code.status.ErrorCode;
 import com.smunity.petition.global.common.exception.GeneralException;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,29 +34,31 @@ public class QuestionService {
         return QuestionResponseDto.from(QuestionEntity);
     }
 
+    @Transactional
+    public QuestionResponseDto createQuestion(QuestionRequestDto requestDto) {
+        // TODO 인증된 사용자인지 아닌지 검사 코드 필요
+        User user = userRepository.findByUserName("201911019").orElseThrow(() -> new GeneralException(ErrorCode._INTERNAL_SERVER_ERROR));
+        Question question = requestDto.toEntity();
+        question.setUser(user);
+        Question saveQuestion = questionRepository.save(question);
+        return QuestionResponseDto.from(saveQuestion);
+    }
 
-    // public QuestionResponseDto createQuestion(QuestionRequestDto requestDto){
-        // 인증된 사용자인지 아닌지 검사 코드 필요
-
-        // Question saveQuestion = questionRepository.save(requestDto.toEntity(user));
-        // return QuestionResponseDto.from(saveQuestion);
-    // }
-
+    @Transactional
     public QuestionResponseDto updateQuestion(Long questionId, QuestionRequestDto requestDto) {
         Question existQuestion = questionRepository.findById(questionId)
                 .orElseThrow(() -> new GeneralException(ErrorCode.QUESTION_NOT_FOUND));
-        // 작성자와 접근자가 같은 사람인지 확인하는 로직 필요할 것 같음
-        existQuestion.setSubject(requestDto.subject());
-        existQuestion.setContent(requestDto.content());
-        existQuestion.setAnonymous(requestDto.anonymous());
+        // TODO 작성자와 접근자가 같은 사람인지 확인하는 로직 필요할 것 같음
+        existQuestion.update(requestDto.subject(), requestDto.content(), requestDto.anonymous());
         Question updateQuestion = questionRepository.save(existQuestion);
         return QuestionResponseDto.from(updateQuestion);
     }
 
+    @Transactional
     public void deleteQuestion(Long questionId) {
         Question existQuestion = questionRepository.findById(questionId)
                 .orElseThrow(() -> new GeneralException(ErrorCode.QUESTION_NOT_FOUND));
-        // 작성자와 접근자가 같은 사람인지 확인하는 로직 필요할 것 같음
+        // TODO 작성자와 접근자가 같은 사람인지 확인하는 로직 필요할 것 같음
         questionRepository.delete(existQuestion);
     }
 }

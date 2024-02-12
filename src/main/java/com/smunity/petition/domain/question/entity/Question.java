@@ -35,15 +35,14 @@ public class Question extends BaseEntity {
     @OneToOne(mappedBy = "question", fetch = FetchType.LAZY)
     private Answer answer;
 
-    public void setSubject(String subject) {
-        subject = subject;
+    public void update(String subject, String content, boolean anonymous) {
+        this.subject = subject;
+        this.content = content;
+        this.anonymous = anonymous;
     }
 
-    public void setContent(String content) {
-        content = content;
-    }
-
-    public void setAnonymous(boolean anonymous) {
-        anonymous = anonymous;
+    public void setUser(User user) {
+        this.user = user;
+        this.user.getQuestions().add(this);
     }
 }
