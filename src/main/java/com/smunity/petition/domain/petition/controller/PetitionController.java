@@ -21,26 +21,26 @@ public class PetitionController {
         return ApiResponse.onSuccess(petitionLists);
     }
 
-    @GetMapping("/{id}")
-    public ApiResponse<PetitionResponse.petitionDetail> getPetitionDetail(@PathVariable Long id) {
-        PetitionResponse.petitionDetail petitionDetail = petitionService.getPetitionById(id);
+    @GetMapping("/{petitionId}")
+    public ApiResponse<PetitionResponse.petitionDetail> getPetitionDetail(@PathVariable Long petitionId) {
+        PetitionResponse.petitionDetail petitionDetail = petitionService.getPetitionById(petitionId);
         return ApiResponse.onSuccess(petitionDetail);
     }
 
     @PostMapping
-    public PetitionResponse.petitionDetail createPetition(@RequestBody PetitionRequest.CreateDTO request) {
-        return petitionService.createPetition(request);
+    public ApiResponse<PetitionResponse.petitionDetail> createPetition(@RequestBody PetitionRequest.CreateDTO request) {
+        return ApiResponse.created(petitionService.createPetition(request));
     }
 
     @PatchMapping("/{petitionId}")
-    public ApiResponse<PetitionResponse.petitionDetail> updatePetition(@PathVariable(name = "petitionId") Long petitionId, PetitionRequest.UpdateDTO updateDTO){
-        PetitionResponse.petitionDetail petitionDetail = petitionService.updatePetition(updateDTO,petitionId);
-        return ApiResponse.onSuccess(petitionDetail);
+    public ApiResponse<PetitionResponse.petitionDetail> updatePetition(@PathVariable Long petitionId, @RequestBody PetitionRequest.UpdateDTO updateDTO) {
+        PetitionResponse.petitionDetail petitionDetail = petitionService.updatePetition(updateDTO, petitionId);
+        return ApiResponse.created(petitionDetail);
     }
 
     @DeleteMapping("/{petitionId}")
-    public ApiResponse<Object> deletePetition(@PathVariable(name = "petitionId") Long petitionId){
+    public ApiResponse<Object> deletePetition(@PathVariable Long petitionId) {
         petitionService.deletePetition(petitionId);
-        return ApiResponse.onSuccess("청원 게시글이 삭제되었습니다.");
+        return ApiResponse.noContent();
     }
 }

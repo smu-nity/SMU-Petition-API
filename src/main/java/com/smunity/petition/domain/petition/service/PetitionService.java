@@ -41,15 +41,16 @@ public class PetitionService {
     }
 
     @Transactional
-    public PetitionResponse.petitionDetail updatePetition(PetitionRequest.UpdateDTO updateDTO, Long petitionId){
+    public PetitionResponse.petitionDetail updatePetition(PetitionRequest.UpdateDTO updateDTO, Long petitionId) {
+        System.out.println(updateDTO);
         Petition petition = petitionRepository.findById(petitionId).orElseThrow(() -> new GeneralException(ErrorCode.PETITION_NOT_FOUND));
         petition.updatePetition(updateDTO);
-        petitionRepository.save(petition);
-        return PetitionResponse.petitionDetail.from(petition);
+        Petition updated = petitionRepository.save(petition);
+        return PetitionResponse.petitionDetail.from(updated);
     }
 
     @Transactional
-    public void deletePetition(Long petitionId){
+    public void deletePetition(Long petitionId) {
         petitionRepository.deleteById(petitionId);
     }
 }

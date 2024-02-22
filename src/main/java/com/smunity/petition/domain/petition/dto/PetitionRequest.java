@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 public class PetitionRequest {
 
     @Getter
-    public static class CreateDTO{
+    public static class CreateDTO {
 
         private String subject;
         private String content;
@@ -27,11 +27,20 @@ public class PetitionRequest {
     }
 
     @Getter
-    public static class UpdateDTO{
+    public static class UpdateDTO {
 
         private String subject;
         private String content;
         private int category;
+
+        @Override
+        public String toString() {
+            return "UpdateDTO{" +
+                    "subject='" + subject + '\'' +
+                    ", content='" + content + '\'' +
+                    ", category=" + category +
+                    '}';
+        }
     }
 
 }
