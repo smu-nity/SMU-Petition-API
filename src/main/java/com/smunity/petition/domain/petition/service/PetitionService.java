@@ -32,11 +32,25 @@ public class PetitionService {
     }
 
     @Transactional
-    public PetitionResponse.petitionDetail createPetition(PetitionRequest request) {
+    public PetitionResponse.petitionDetail createPetition(PetitionRequest.CreateDTO request) {
         User user = userRepository.findByUserName("201911019").orElseThrow(() -> new GeneralException(ErrorCode._INTERNAL_SERVER_ERROR));
         Petition petition = request.toEntity();
         petition.setUser(user);
         petitionRepository.save(petition);
         return PetitionResponse.petitionDetail.from(petition);
+    }
+
+    @Transactional
+    public PetitionResponse.petitionDetail updatePetition(PetitionRequest.UpdateDTO updateDTO, Long petitionId) {
+        System.out.println(updateDTO);
+        Petition petition = petitionRepository.findById(petitionId).orElseThrow(() -> new GeneralException(ErrorCode.PETITION_NOT_FOUND));
+        petition.updatePetition(updateDTO);
+        Petition updated = petitionRepository.save(petition);
+        return PetitionResponse.petitionDetail.from(updated);
+    }
+
+    @Transactional
+    public void deletePetition(Long petitionId) {
+        petitionRepository.deleteById(petitionId);
     }
 }
