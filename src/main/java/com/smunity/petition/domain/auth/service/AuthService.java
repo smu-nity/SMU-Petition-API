@@ -17,7 +17,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
-
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -26,7 +25,7 @@ public class AuthService {
 
     public AuthResponseDto authenticate(AuthRequestDto requestDto) {
         JSONObject response = getData(requestDto, "/UsrSchMng/selectStdInfo.do");
-        return AuthResponseDto.from(response.getJSONArray("dsStdInfoList"));
+        return AuthResponseDto.from(response.getJSONArray("dsStdInfoList").getJSONObject(0));
     }
 
     private Map<String, String> login(AuthRequestDto requestDto) {

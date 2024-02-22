@@ -1,7 +1,6 @@
 package com.smunity.petition.domain.auth.dto;
 
 import lombok.Builder;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 @Builder
@@ -13,10 +12,6 @@ public record AuthResponseDto(
         int year,
         int semester
 ) {
-    public static AuthResponseDto from(JSONArray json) {
-        return from(json.getJSONObject(0));
-    }
-
     public static AuthResponseDto from(JSONObject obj) {
         return AuthResponseDto.builder()
                 .name(obj.getString("NM_KOR"))
