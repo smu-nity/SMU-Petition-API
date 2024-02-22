@@ -1,6 +1,7 @@
 package com.smunity.petition.domain.petition.entity;
 
 import com.smunity.petition.domain.account.entity.User;
+import com.smunity.petition.domain.petition.dto.PetitionRequest;
 import com.smunity.petition.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -49,5 +50,11 @@ public class Petition extends BaseEntity {
     public void setUser(User user) {
         this.user = user;
         this.user.getPetitions().add(this);
+    }
+
+    public void updatePetition(PetitionRequest.UpdateDTO updateDTO){
+        this.subject = updateDTO.getSubject();
+        this.content = updateDTO.getContent();
+        this.category = updateDTO.getCategory();
     }
 }
