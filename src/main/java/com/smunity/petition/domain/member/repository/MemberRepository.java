@@ -1,6 +1,6 @@
-package com.smunity.petition.repository;
+package com.smunity.petition.domain.member.repository;
 
-import com.smunity.petition.entity.MemberEntity;
+import com.smunity.petition.domain.member.entity.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
