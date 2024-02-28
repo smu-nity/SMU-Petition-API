@@ -9,7 +9,6 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
@@ -22,9 +21,10 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "auth_user")
+@Table(name = "accounts_user")
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,9 +39,8 @@ public class User {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "is_superuser", nullable = false)
-    @ColumnDefault("false")
-    private Boolean isSuperUser;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "is_staff", nullable = false)
     @ColumnDefault("false")
@@ -54,12 +53,19 @@ public class User {
     @Column(name = "last_login")
     private LocalDateTime lastLogin;
 
-    @Column(name = "date_joined")
-    @CreatedDate
-    private LocalDateTime dateJoined;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "year_id")
+    private Year year;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-    private Profile profile;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    @Column(name = "current_year")
+    private int currentYear;
+
+    @Column(name = "completed_semester")
+    private int completedSemesters;
 
     @OneToMany(mappedBy = "user")
     private List<Question> questions;
@@ -70,7 +76,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Petition> petitions;
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setYear(Year year) {
+        this.year = year;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
