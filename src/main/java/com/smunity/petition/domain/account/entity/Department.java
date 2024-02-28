@@ -26,5 +26,5 @@ public class Department {
     private String url;
 
     @OneToMany(mappedBy = "department")
-    private List<Profile> profiles;
+    private List<User> users;
 }
