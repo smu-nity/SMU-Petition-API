@@ -34,6 +34,10 @@ public class ApiResponse<T> {
         return new ApiResponse<>(code, message, data);
     }
 
+    public static <T> ApiResponse<T> onFailure(String statusCode, String message) {
+        return new ApiResponse<>(statusCode, message, null);
+    }
+    
     // 게시된 경우 응답 생성
     public static <T> ApiResponse<T> created(T result) {
         return new ApiResponse<>(SuccessStatus._CREATED.getCode(), SuccessStatus._CREATED.getMessage(), result);

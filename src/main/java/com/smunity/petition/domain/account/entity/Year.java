@@ -3,12 +3,11 @@ package com.smunity.petition.domain.account.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
-import java.util.List;
-
 @Getter
 @Table(name = "accounts_year")
 @Entity
 public class Year {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,7 +29,4 @@ public class Year {
 
     @Column(name = "all_score")
     private int all;
-
-    @OneToMany(mappedBy = "year")
-    private List<User> users;
 }

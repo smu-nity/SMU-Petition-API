@@ -3,12 +3,11 @@ package com.smunity.petition.domain.account.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
-import java.util.List;
-
 @Getter
 @Table(name = "accounts_department")
 @Entity
 public class Department {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +23,4 @@ public class Department {
 
     @Column(name = "url")
     private String url;
-
-    @OneToMany(mappedBy = "department")
-    private List<User> users;
 }

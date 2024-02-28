@@ -75,4 +75,12 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Petition> petitions;
+
+    public void setYear(Year year) {
+        this.year = year;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }

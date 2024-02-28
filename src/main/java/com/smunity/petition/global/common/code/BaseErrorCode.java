@@ -1,7 +1,15 @@
 package com.smunity.petition.global.common.code;
 
-public interface BaseErrorCode {
-    ErrorReasonDTO getReason();
+import com.smunity.petition.global.common.ApiResponse;
+import org.springframework.http.HttpStatus;
 
-    ErrorReasonDTO getReasonHttpStatus();
+public interface BaseErrorCode {
+    
+    HttpStatus getHttpStatus();
+
+    String getCode();
+
+    String getMessage();
+
+    ApiResponse<Void> getErrorResponse();
 }

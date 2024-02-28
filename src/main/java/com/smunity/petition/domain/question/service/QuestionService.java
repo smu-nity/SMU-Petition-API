@@ -1,7 +1,7 @@
 package com.smunity.petition.domain.question.service;
 
 import com.smunity.petition.domain.account.entity.User;
-import com.smunity.petition.domain.account.repository.UserRepository;
+import com.smunity.petition.domain.account.repository.user.UserRepository;
 import com.smunity.petition.domain.question.dto.QuestionListDto;
 import com.smunity.petition.domain.question.dto.QuestionRequestDto;
 import com.smunity.petition.domain.question.dto.QuestionResponseDto;
