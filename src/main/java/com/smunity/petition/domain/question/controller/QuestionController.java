@@ -6,9 +6,9 @@ import com.smunity.petition.domain.question.dto.QuestionResponseDto;
 import com.smunity.petition.domain.question.service.QuestionService;
 import com.smunity.petition.global.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -17,9 +17,10 @@ public class QuestionController {
     private final QuestionService questionService;
 
     @GetMapping
-    public ApiResponse<List<QuestionListDto>> list() {
-        return ApiResponse.onSuccess(questionService.getQuestion());
+    public ApiResponse<Page<QuestionListDto>> list(Pageable pageable) {
+        return ApiResponse.onSuccess(questionService.getQuestion(pageable));
     }
+
 
     @GetMapping("/{id}")
     public ApiResponse<QuestionResponseDto> read(@PathVariable Long id) {

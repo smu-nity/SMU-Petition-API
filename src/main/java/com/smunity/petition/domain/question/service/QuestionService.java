@@ -10,10 +10,10 @@ import com.smunity.petition.domain.question.repository.QuestionRepository;
 import com.smunity.petition.global.common.code.status.ErrorCode;
 import com.smunity.petition.global.common.exception.GeneralException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,9 +22,9 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
     private final UserRepository userRepository;
 
-    public List<QuestionListDto> getQuestion() {
-        List<Question> questions = questionRepository.findAll();
-        return QuestionListDto.from(questions);
+    public Page<QuestionListDto> getQuestion(Pageable pageable) {
+        Page<Question> questions = questionRepository.findAll(pageable);
+        return questions.map(QuestionListDto::from);
     }
 
 
