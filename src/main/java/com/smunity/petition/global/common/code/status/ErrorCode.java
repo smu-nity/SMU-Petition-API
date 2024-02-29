@@ -1,5 +1,6 @@
 package com.smunity.petition.global.common.code.status;
 
+import com.smunity.petition.global.common.ApiResponse;
 import com.smunity.petition.global.common.code.BaseErrorCode;
 import com.smunity.petition.global.common.code.ErrorReasonDTO;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,12 @@ public enum ErrorCode implements BaseErrorCode {
     // 샘물 인증 관련 에러
     AUTH_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "AUTH401", "아이디 및 비밀번호가 일치하지 않습니다."),
     AUTH_INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "AUTH500", "인증 서버 에러, 관리자에게 문의 바랍니다."),
+
+    // 멤버 관련 에러
+    USER_NOT_FOUND(HttpStatus.BAD_REQUEST, "USER401", "사용자가 없습니다."),
+    NICKNAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "USER402", "닉네임은 필수 입니다."),
+    PASSWORD_NOT_EQUAL(HttpStatus.BAD_REQUEST, "USER403", "비밀번호가 일치하지 않습니다."),
+    USER_ALREADY_EXIST(HttpStatus.BAD_REQUEST, "USER404", "사용자가 이미 존재합니다."),
 
     //question 관련 에러
     QUESTION_NOT_FOUND(HttpStatus.NOT_FOUND,"QUESTION404", "해당 질문이 존재하지 않습니다."),
@@ -44,5 +51,10 @@ public enum ErrorCode implements BaseErrorCode {
                 .code(code)
                 .httpStatus(httpStatus)
                 .build();
+    }
+
+    @Override
+    public ApiResponse<Void> getErrorResponse() {
+        return ApiResponse.onFailure(code, message, null);
     }
 }
