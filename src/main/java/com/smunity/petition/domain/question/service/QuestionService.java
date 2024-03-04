@@ -22,10 +22,17 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
     private final UserRepository userRepository;
 
-    public Page<QuestionListDto> getQuestion(Pageable pageable) {
+    /*public Page<QuestionListDto> getQuestion(Pageable pageable) {
+        Page<Question> questions = questionRepository.findAll(pageable);
+        return questions.map(QuestionListDto::from);
+    }*/
+
+    public Page<QuestionListDto> getQuestion(Pageable pageable){
         Page<Question> questions = questionRepository.findAll(pageable);
         return questions.map(QuestionListDto::from);
     }
+
+
 
 
     public QuestionResponseDto getQuestionById(Long id) {

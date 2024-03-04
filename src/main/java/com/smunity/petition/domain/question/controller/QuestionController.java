@@ -5,9 +5,11 @@ import com.smunity.petition.domain.question.dto.QuestionRequestDto;
 import com.smunity.petition.domain.question.dto.QuestionResponseDto;
 import com.smunity.petition.domain.question.service.QuestionService;
 import com.smunity.petition.global.common.ApiResponse;
+import jdk.jfr.Frequency;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -16,11 +18,15 @@ import org.springframework.web.bind.annotation.*;
 public class QuestionController {
     private final QuestionService questionService;
 
-    @GetMapping
+   /* @GetMapping
     public ApiResponse<Page<QuestionListDto>> list(Pageable pageable) {
         return ApiResponse.onSuccess(questionService.getQuestion(pageable));
     }
-
+*/
+    @GetMapping
+    public ApiResponse<Page<QuestionListDto>> list(@PageableDefault Pageable pageable){
+        return ApiResponse.onSuccess(questionService.getQuestion(pageable));
+    }
 
     @GetMapping("/{id}")
     public ApiResponse<QuestionResponseDto> read(@PathVariable Long id) {
