@@ -23,7 +23,8 @@ public class Respond extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "petition_id")
-    private Petition petition;
+    Petition petition;
+
 
     private String content;
 

@@ -21,11 +21,11 @@ public class RespondController {
         return ApiResponse.onSuccess(respondDetail);
     }
 
-    @GetMapping
-    public ApiResponse<List<RespondResponse.respondList>> getRespondList() {
-        List<RespondResponse.respondList> respondLists = respondService.getResponds();
-        return ApiResponse.onSuccess(respondLists);
-    }
+//    @GetMapping
+//    public ApiResponse<List<RespondResponse.respondList>> getRespondList() {
+//        List<RespondResponse.respondList> respondLists = respondService.getResponds();
+//        return ApiResponse.onSuccess(respondLists);
+//    }
 
     @PostMapping
     public ApiResponse<RespondResponse.respondDetail> createRespond(@RequestBody RespondRequest.CreateRespondDTO request) {

@@ -15,5 +15,4 @@ public interface RespondRepository extends JpaRepository<Respond, Long> {
     //RespondResponse.respondDetail -> Respond
     Respond findByPetitionId(@Param("petitionId") Long petitionId);
 
-    List<Respond> findAll();
 }

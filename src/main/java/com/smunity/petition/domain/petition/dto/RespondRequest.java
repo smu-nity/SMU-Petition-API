@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 public class RespondRequest {
     @Getter
     public static class CreateRespondDTO {
-        private Petition petition;
+        private Long petitionId;
         private String content;
-
+        //절대 엔티티 자체를 넣지 말자
 
         public Respond toEntity() {
             return Respond.builder()
-                    .petition(petition)
+                    .petition(new Petition(petitionId))
                     .content(content)
                     .build();
         }

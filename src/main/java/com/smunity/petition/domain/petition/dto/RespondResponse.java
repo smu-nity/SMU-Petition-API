@@ -15,14 +15,14 @@ public class RespondResponse {
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     public static class respondDetail {
         private Long id;
-        private Petition petition;
+        private Long petitionId;
         private Long userId;
         private LocalDateTime createdDate;
         private LocalDateTime modifiedDate;
 
         public static respondDetail from(Respond respond) {
             return respondDetail.builder()
-                    .petition(respond.getPetition())
+                    .petitionId(respond.getPetition().getId())
                     .userId(respond.getUser().getId())
                     .createdDate(respond.getCreateDate())
                     .modifiedDate(respond.getModifyDate())
@@ -37,14 +37,13 @@ public class RespondResponse {
     public static class respondList {
         private Long id;
         private Long userId;
-        private Petition petition;
-
+        private Long petitionId;
 
         public static respondList from(Respond respond) {
             return respondList.builder()
                     .id(respond.getId())
                     .userId(respond.getUser().getId())
-                    .petition(respond.getPetition())
+                    .petitionId(respond.getPetition().getId())
                     .build();
         }
         public static List<respondList> from(List<Respond> responds) {
