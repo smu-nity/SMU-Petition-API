@@ -2,6 +2,7 @@ package com.smunity.petition.domain.account.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.smunity.petition.domain.petition.entity.Petition;
+import com.smunity.petition.domain.petition.entity.Respond;
 import com.smunity.petition.domain.question.entity.Answer;
 import com.smunity.petition.domain.question.entity.Question;
 import jakarta.persistence.*;
@@ -69,6 +70,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Petition> petitions;
+
+    @OneToMany(mappedBy = "user")
+    private List<Respond> responds;
 
     public void setProfile(Profile profile) {
         this.profile = profile;

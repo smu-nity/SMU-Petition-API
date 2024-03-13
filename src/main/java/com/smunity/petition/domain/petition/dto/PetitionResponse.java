@@ -21,7 +21,7 @@ public class PetitionResponse {
         private Integer category;
         private Boolean anonymous;
         private List<CommentResponse.commentDTO> comments;
-        private RespondResponse.respondDTO respond;
+        private RespondResponse.respondDetail respond;
         private Integer agreementCount;
         private LocalDateTime createdDate;
         private LocalDateTime modifiedDate;
@@ -38,7 +38,7 @@ public class PetitionResponse {
                     .anonymous(petition.isAnonymous())
                     .comments(petition.getComments() != null ? CommentResponse.commentDTO.from(petition.getComments()) : null)
                     .agreementCount(petition.getAgreements() != null ? petition.getAgreements().size() : 0)
-                    .respond(petition.getRespond() != null ? RespondResponse.respondDTO.from(petition.getRespond()) : null)
+                    .respond(petition.getRespond() != null ? RespondResponse.respondDetail.from(petition.getRespond()) : null)
                     .createdDate(petition.getCreateDate())
                     .modifiedDate(petition.getModifyDate())
                     .endDate(petition.getEndDate())

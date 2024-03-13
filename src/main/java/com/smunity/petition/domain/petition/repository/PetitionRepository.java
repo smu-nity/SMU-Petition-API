@@ -15,6 +15,4 @@ public interface PetitionRepository extends JpaRepository<Petition, Long> {
 
     @Query("select p from Petition p")
     List<PetitionResponse.petitionList> findAllPetition();
-
-    List<Petition> findAll();
 }

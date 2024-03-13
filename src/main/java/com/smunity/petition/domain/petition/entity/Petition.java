@@ -52,6 +52,10 @@ public class Petition extends BaseEntity {
         this.user.getPetitions().add(this);
     }
 
+    public Petition(Long id) {
+        this.id = id;
+    }
+
     public void updatePetition(PetitionRequest.UpdateDTO updateDTO){
         this.subject = updateDTO.getSubject();
         this.content = updateDTO.getContent();
