@@ -16,7 +16,8 @@ public class RespondRequest {
 
         public Respond toEntity() {
             return Respond.builder()
-                    .petition(new Petition(petitionId))
+                    .petition(null)
+                    //여기선 null값을 넣어주고 Service에서 실제 값을 넣어주자
                     .content(content)
                     .build();
         }

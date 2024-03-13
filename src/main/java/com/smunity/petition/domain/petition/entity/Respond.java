@@ -33,6 +33,10 @@ public class Respond extends BaseEntity {
         this.user.getResponds().add(this);
     }
 
+    public void setPetition(Petition petition) {
+        this.petition = petition;
+    }
+
     public void updateRespond(RespondRequest.UpdateDTO updateDTO) {
         this.content = updateDTO.getContent();
     }
